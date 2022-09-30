@@ -6,13 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".EmergenciaActivity">
 
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="121dp" />
+
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_duracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="425dp" />
+        tools:layout_editor_absoluteY="418dp" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
@@ -33,7 +43,7 @@
         tools:layout_editor_absoluteY="279dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/et_destino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -56,23 +66,20 @@
         android:layout_height="wrap_content"
         android:text="Destino"
         tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="200dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="114dp" />
+        tools:layout_editor_absoluteY="202dp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="341dp" />
+        android:id="@+id/btn_calcular"
+        android:layout_width="121dp"
+        android:layout_height="54dp"
+        android:text="Calcular"
+        tools:layout_editor_absoluteX="141dp"
+        tools:layout_editor_absoluteY="340dp" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="321dp"
+        android:layout_height="184dp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="472dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
