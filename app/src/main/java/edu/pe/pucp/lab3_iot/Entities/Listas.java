@@ -24,4 +24,8 @@ public class Listas {
     public static void addHistorial(Historial historial){
         listaHistorial.add(historial);
     }
+    public static ArrayList<Historial> historialMostrarCuatro(){
+        int x = listaHistorial.size();
+        return new ArrayList<>(listaHistorial.subList(x-5,x-1));
+    }
 }
