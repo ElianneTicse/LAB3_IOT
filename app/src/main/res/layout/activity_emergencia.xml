@@ -42,6 +42,12 @@
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="279dp" />
 
+
+    <fragment
+        android:id="@+id/fragmentDestino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
     <EditText
         android:id="@+id/et_destino"
         android:layout_width="wrap_content"
