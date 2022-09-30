@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Registro"
         android:textSize="16sp"
-        android:backgroundTint="@color/warning"
-        android:textColor="@color/black"/>
+        android:backgroundTint="@color/warning"/>
     <Button
         android:id="@+id/btnEmergencia"
         android:layout_marginTop="50dp"
