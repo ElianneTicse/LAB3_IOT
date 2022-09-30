@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Registro"
+        android:textSize="16sp"
+        android:backgroundTint="@color/warning"
+        android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/btnEmergencia"
+        android:layout_marginTop="50dp"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Emergencia"
+        android:textSize="16sp"
+        android:backgroundTint="@color/danger"/>
+    <Button
+        android:id="@+id/btnHistorial"
+        android:layout_width="180dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:text="Historial"
+        android:textSize="16sp"
+        android:backgroundTint="@color/green"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
