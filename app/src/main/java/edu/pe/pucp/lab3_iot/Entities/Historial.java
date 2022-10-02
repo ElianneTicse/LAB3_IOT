@@ -5,6 +5,11 @@ public class Historial {
     private String origen;
     private String destino;
 
+    public Historial(Mascotita mascotita, String origen, String destino) {
+        this.mascotita = mascotita;
+        this.origen = origen;
+        this.destino = destino;
+    }
 
     public Mascotita getMascotita() {
         return mascotita;

@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="Registro"
         android:textSize="16sp"
-        android:backgroundTint="@color/warning"/>
+        android:backgroundTint="@color/warning"
+        android:onClick="irRegistro"/>
 
     <Button
         android:id="@+id/btnEmergencia"
@@ -32,7 +33,8 @@
         android:layout_height="wrap_content"
         android:text="Historial"
         android:textSize="16sp"
-        android:backgroundTint="@color/green"/>
+        android:backgroundTint="@color/green"
+        android:onClick="irHistorial"/>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

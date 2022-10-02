@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void irHistorial(View view){
-
+        Intent intent = new Intent(this, HistorialActivity.class);
+        startActivity(intent);
     }
 
 }
