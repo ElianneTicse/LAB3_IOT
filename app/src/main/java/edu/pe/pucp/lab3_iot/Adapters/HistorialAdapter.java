@@ -48,7 +48,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.View
         Historial historial = listaHistorial.get(position);
         Mascotita masc= historial.getMascotita();
         String mostrar= "Mascota: "+masc.getNombre();
-        mostrar+= "\nGénero: "+masc.getNombre();
+        mostrar+= "\nGénero: "+masc.getGenero();
         mostrar+= "\nDueño: "+masc.getDuenho();
         mostrar+="\nDNI: "+masc.getDni();
         mostrar+="\nDescripción: "+masc.getDescripcion();
