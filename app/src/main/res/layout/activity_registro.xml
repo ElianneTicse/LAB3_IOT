@@ -71,15 +71,15 @@
         android:layout_marginTop="110dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_genero"
-        android:layout_width="146dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="48dp"
+        android:entries="@array/generos"
         app:layout_constraintEnd_toEndOf="@+id/et_nombremascota"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/et_nombremascota"
@@ -92,7 +92,6 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="@+id/spinner_genero"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/spinner_genero"
@@ -117,7 +116,6 @@
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="@+id/et_dni"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/et_dni"

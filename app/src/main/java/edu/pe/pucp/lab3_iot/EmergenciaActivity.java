@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.pe.pucp.lab3_iot.Entities.Historial;
+import edu.pe.pucp.lab3_iot.Entities.Listas;
+import edu.pe.pucp.lab3_iot.Entities.Mascotita;
+
 public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 
@@ -61,6 +66,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
     private int nPoints;
     private boolean enCamino = false;
     private final LatLng ORIGEN = new LatLng(-12.084538, -77.031396);
+    private String dest = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,21 +105,25 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
                 for ( AddressComponent addressComponent : addressComponents){
                     if (addressComponent.getShortName().contains("Lince")){
                         Log.i(LOGTAG,"Eres de Lince");
+                        dest = "Lince";
                         enCobertura = true;
                         minutos = 10;
                         break;
                     }else if(addressComponent.getShortName().contains("San Isidro")){
                         Log.i(LOGTAG,"Eres de San isidro");
+                        dest = "San Isidro";
                         minutos = 15;
                         enCobertura = true;
                         break;
                     }else if(addressComponent.getShortName().contains("Magdalena")){
                         Log.i(LOGTAG,"Eres de Magdalenaa");
+                        dest = "Magdalena";
                         minutos = 20;
                         enCobertura = true;
                         break;
                     }else if(addressComponent.getShortName().contains("Jesús María")){
                         Log.i(LOGTAG,"Eres de Jesus maria");
+                        dest = "Jesus María";
                         minutos = 25;
                         enCobertura = true;
                         break;
@@ -137,6 +147,15 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
         map.addMarker(new MarkerOptions().position(destino).title("Destino"));
 
         //TODO: validar y obtener DNI, agregar a historial
+        EditText dni = findViewById(R.id.et_dni);
+        String dniStr = dni.getText().toString();
+        for(Mascotita mascotita : Listas.getListaMascotas()){
+            if(mascotita.getDni().equals(dniStr)){
+                Historial historial = new Historial(mascotita,"Lince",dest);
+                Listas.addHistorial(historial);
+            }
+        }
+
         ContadorViewModel contadorViewModel =
                 new ViewModelProvider(this).get(ContadorViewModel.class);
 

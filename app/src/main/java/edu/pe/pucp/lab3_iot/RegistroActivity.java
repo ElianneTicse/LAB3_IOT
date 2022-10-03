@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import edu.pe.pucp.lab3_iot.Entities.Listas;
 import edu.pe.pucp.lab3_iot.Entities.Mascotita;
@@ -16,8 +17,6 @@ public class RegistroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
-
     }
 
 
@@ -34,8 +33,12 @@ public class RegistroActivity extends AppCompatActivity {
         String dniStr = dni.getText().toString();
         String descripcionStr = descripcion.getText().toString();
 
-        Mascotita mascota = new Mascotita(nombreMascotaStr,generoStr,nombreDuenioStr,dniStr,descripcionStr);
-        Listas.addMascota(mascota);
+        if(!nombreMascotaStr.isEmpty() && !(genero.getSelectedItemPosition()==0)&& !nombreDuenioStr.isEmpty() && !dniStr.isEmpty() && !descripcionStr.isEmpty()) {
+            Mascotita mascota = new Mascotita(nombreMascotaStr, generoStr, nombreDuenioStr, dniStr, descripcionStr);
+            Listas.addMascota(mascota);
+        }else{
+            Toast.makeText(RegistroActivity.this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
