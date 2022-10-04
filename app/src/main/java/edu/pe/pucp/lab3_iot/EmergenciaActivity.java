@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -70,6 +71,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Ambulancias Mascotín");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergencia);
         //Obtener API KEY
