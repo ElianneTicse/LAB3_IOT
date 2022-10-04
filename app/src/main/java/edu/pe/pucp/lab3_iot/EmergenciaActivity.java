@@ -88,7 +88,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
         //Obtiene el mapa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        //Procesa el autocompletado del origen
+        //Procesa el autocompletado del destino
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentDestino);
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS_COMPONENTS));
         autocompleteFragment.setLocationBias(RectangularBounds.newInstance(
@@ -150,6 +150,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
                masco = new Mascotita(mascotita.getNombre(), mascotita.getGenero(), mascotita.getDuenho(),mascotita.getDni(), mascotita.getDescripcion());
             }else{
                 Toast.makeText(EmergenciaActivity.this, "Ingrese un dni válido", Toast.LENGTH_SHORT).show();
+                return;
             }
         }
 
@@ -212,7 +213,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
                     if(contador>0){
                         int contadorMinutos = (contador % 3600) / 60;
                         int contadorSegundos = contador % 60;
-                        contadorTV.setText("La ambulancia llegará en "+contadorMinutos+":"+contadorSegundos+" minutos.");
+                        contadorTV.setText("La ambulancia llegará en "+contadorMinutos+":"+String.format("%02d", contadorSegundos)+" minutos.");
                     }else{
                         contadorTV.setText("La ambulancia ha llegado");
                     }

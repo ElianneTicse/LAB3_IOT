@@ -2,6 +2,7 @@ package edu.pe.pucp.lab3_iot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -37,11 +38,10 @@ public class RegistroActivity extends AppCompatActivity {
         if(!nombreMascotaStr.isEmpty() && !(genero.getSelectedItemPosition()==0)&& !nombreDuenioStr.isEmpty() && !dniStr.isEmpty() && !descripcionStr.isEmpty()) {
             Mascotita mascota = new Mascotita(nombreMascotaStr, generoStr, nombreDuenioStr, dniStr, descripcionStr);
             Listas.addMascota(mascota);
-            nombreMascota.setText("");
-            genero.setSelection(0);
-            nombreDuenio.setText("");
-            dni.setText("");
-            descripcion.setText("");
+            Intent intent = new Intent();
+            intent.putExtra("mascota",nombreMascotaStr);
+            setResult(RESULT_OK,intent);
+            finish();
         }else{
             Toast.makeText(RegistroActivity.this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }
