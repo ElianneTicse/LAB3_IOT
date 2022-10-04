@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +65,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
     private boolean enCamino = false;
     private final LatLng ORIGEN = new LatLng(-12.084538, -77.031396);
     private String dest = "";
+    private String entra = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,48 +134,61 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void calcularRuta(View view){
-        if(enCamino){
-            Toast.makeText(EmergenciaActivity.this, "La ambulancia ya está en camino", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(destino==null){
-            Toast.makeText(EmergenciaActivity.this, "Lo sentimos, no estás en cobertura :(", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        enCamino = true;
-        map.addMarker(new MarkerOptions().position(destino).title("Destino"));
 
-        //TODO: validar y obtener DNI, agregar a historial
         EditText dni = findViewById(R.id.et_dni);
+        View fragment = findViewById(R.id.fragmentDestino);
         String dniStr = dni.getText().toString();
+        String fragmentStr = fragment.toString();
+        Mascotita masco = new Mascotita("", "", "","","");
+
         for(Mascotita mascotita : Listas.getListaMascotas()){
             if(mascotita.getDni().equals(dniStr)){
-                Historial historial = new Historial(mascotita,"Lince",dest);
-                Listas.addHistorial(historial);
+               entra="si";
+               masco = new Mascotita(mascotita.getNombre(), mascotita.getGenero(), mascotita.getDuenho(),mascotita.getDni(), mascotita.getDescripcion());
             }
         }
 
-        ContadorViewModel contadorViewModel =
-                new ViewModelProvider(this).get(ContadorViewModel.class);
+        if (!dniStr.isEmpty() && !fragmentStr.isEmpty() && entra.equals("si")){
+            if(enCamino){
+                Toast.makeText(EmergenciaActivity.this, "La ambulancia ya está en camino", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(destino==null){
+                Toast.makeText(EmergenciaActivity.this, "Lo sentimos, no estás en cobertura :(", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            enCamino = true;
+            map.addMarker(new MarkerOptions().position(destino).title("Destino"));
 
-        String url = getUrl(ORIGEN,destino);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                url,
-                response -> {
-                    try {
-                        JSONObject responseJson = new JSONObject(response);
-                        String strPoints = ((JSONObject)((JSONObject) responseJson.getJSONArray("routes").get(0)).get("overview_polyline")).getString("points");
-                        List<LatLng> latlngPoints = PolyUtil.decode(strPoints);
-                        nPoints = minutos*60/5;
-                        rutaPoints = latlngPoints;
-                        contadorViewModel.contarNal0(minutos*60);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                error -> Log.e("error volley", error.getMessage()));
-        requestQueue.add(stringRequest);
+            //TODO: validar y obtener DNI, agregar a historial
+            Historial historial = new Historial(masco,"Lince",dest);
+            Listas.addHistorial(historial);
+
+
+            ContadorViewModel contadorViewModel =
+                    new ViewModelProvider(this).get(ContadorViewModel.class);
+
+            String url = getUrl(ORIGEN,destino);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                    url,
+                    response -> {
+                        try {
+                            JSONObject responseJson = new JSONObject(response);
+                            String strPoints = ((JSONObject)((JSONObject) responseJson.getJSONArray("routes").get(0)).get("overview_polyline")).getString("points");
+                            List<LatLng> latlngPoints = PolyUtil.decode(strPoints);
+                            nPoints = minutos*60/5;
+                            rutaPoints = latlngPoints;
+                            contadorViewModel.contarNal0(minutos*60);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> Log.e("error volley", error.getMessage()));
+            requestQueue.add(stringRequest);
+        }else{
+            Toast.makeText(EmergenciaActivity.this, "No ha ingresado todos los datos o son incorrectos", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

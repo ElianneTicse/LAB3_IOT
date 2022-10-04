@@ -36,6 +36,11 @@ public class RegistroActivity extends AppCompatActivity {
         if(!nombreMascotaStr.isEmpty() && !(genero.getSelectedItemPosition()==0)&& !nombreDuenioStr.isEmpty() && !dniStr.isEmpty() && !descripcionStr.isEmpty()) {
             Mascotita mascota = new Mascotita(nombreMascotaStr, generoStr, nombreDuenioStr, dniStr, descripcionStr);
             Listas.addMascota(mascota);
+            nombreMascota.setText("");
+            genero.setSelection(0);
+            nombreDuenio.setText("");
+            dni.setText("");
+            descripcion.setText("");
         }else{
             Toast.makeText(RegistroActivity.this, "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }
