@@ -2,7 +2,7 @@
     <string name="app_name">LAB3_IOT</string>
     <string-array name="generos">
         <item>Seleccione Género</item>
-        <item>Masculino</item>
-        <item>Femenino</item>
+        <item>Macho</item>
+        <item>Hembra</item>
     </string-array>
 </resources>

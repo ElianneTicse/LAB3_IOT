@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.annotation.SuppressLint;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -145,6 +146,8 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
             if(mascotita.getDni().equals(dniStr)){
                entra="si";
                masco = new Mascotita(mascotita.getNombre(), mascotita.getGenero(), mascotita.getDuenho(),mascotita.getDni(), mascotita.getDescripcion());
+            }else{
+                Toast.makeText(EmergenciaActivity.this, "Ingrese un dni válido", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -205,7 +208,9 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
                 contador -> {
                     //TODO: pasar el contador de segundos a minutos
                     if(contador>0){
-                        contadorTV.setText("La ambulancia llegará en "+ contador + " segundos");
+                        int contadorMinutos = (contador % 3600) / 60;
+                        int contadorSegundos = contador % 60;
+                        contadorTV.setText("La ambulancia llegará en "+contadorMinutos+":"+contadorSegundos+" minutos.");
                     }else{
                         contadorTV.setText("La ambulancia ha llegado");
                     }
@@ -225,7 +230,7 @@ public class EmergenciaActivity extends AppCompatActivity implements OnMapReadyC
                         rutaToPolyLine.add(0, actual);
                         if(ambulanciaMarker==null){
                             rutaPolyLine = googleMap.addPolyline(new PolylineOptions().addAll(rutaToPolyLine));
-                            rutaPolyLine.setColor(EmergenciaActivity.this.getResources().getColor(R.color.md_theme_dark_background));
+                            rutaPolyLine.setColor(EmergenciaActivity.this.getResources().getColor(R.color.md_theme_dark_onPrimary));
                             ambulanciaMarker = googleMap.addMarker(new MarkerOptions().position(ORIGEN).title("Ambulancia"));
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ORIGEN, 17));
                             ambulanciaMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ambulance));

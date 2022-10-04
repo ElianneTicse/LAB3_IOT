@@ -18,7 +18,7 @@ public class ContadorViewModel extends ViewModel {
                 i--;
 
                 try {
-                    Thread.sleep(100); //Acelerado, revertir luego
+                    Thread.sleep(1000); //Acelerado, revertir luego
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
